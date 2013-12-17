@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   def app_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :remember_token)
   end
 
   before_save {self.email = email.downcase}
