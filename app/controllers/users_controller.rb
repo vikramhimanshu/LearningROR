@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
-  before_action admin_user, only: :destroy
+  before_action :admin_user, only: :destroy
 
   def index
     @title = "All users"
@@ -43,8 +43,7 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "User Deleted"
-    redirect_to users_url
+    redirect_to users_path, :flash => { :success => "User destroyed." }
   end
 
   private
